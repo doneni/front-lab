@@ -19,7 +19,6 @@ import { useAuth } from '../contexts/auth'
 import authService from '../services/auth.service'
 import { User } from '../models/user'
 import { AxiosError } from 'axios'
-
 export function GoogleIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox='0 0 48 48'>
@@ -43,32 +42,6 @@ export function GoogleIcon(props: SvgIconProps) {
   )
 }
 
-export function FacebookIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props} viewBox='0 0 48 48'>
-      <linearGradient
-        id='Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1'
-        x1='9.993'
-        x2='40.615'
-        y1='9.993'
-        y2='40.615'
-        gradientUnits='userSpaceOnUse'
-      >
-        <stop offset='0' stopColor='#2aa4f4'></stop>
-        <stop offset='1' stopColor='#007ad9'></stop>
-      </linearGradient>
-      <path
-        fill='url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)'
-        d='M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z'
-      ></path>
-      <path
-        fill='#fff'
-        d='M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z'
-      ></path>
-    </SvgIcon>
-  )
-}
-
 export default function LoginForm() {
   const {
     register,
@@ -79,10 +52,6 @@ export default function LoginForm() {
   const { showSnackBar } = useSnackBar()
   const { login } = useAuth()
   const [expanded, setExpanded] = useState(false)
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
 
   const onSubmit: SubmitHandler<User> = async (data) => {
     try {
@@ -106,10 +75,6 @@ export default function LoginForm() {
     }
   }
 
-  const handleGoogleLogin = async () => {
-    window.location.href = authService.getGoogleLoginUrl()
-  }
-
   return (
     <Box
       sx={{
@@ -125,20 +90,8 @@ export default function LoginForm() {
       <Typography component='h1' variant='h5'>
         Sign in
       </Typography>
-      <Button
-        variant='outlined'
-        startIcon={<GoogleIcon />}
-        sx={{ width: 1.0, mt: 2 }}
-        onClick={handleGoogleLogin}
-      >
-        Sign in with Google
-      </Button>
 
-      <Button variant='outlined' sx={{ width: 1.0, mt: 2 }} onClick={handleExpandClick}>
-        Sign in with your email address
-      </Button>
-
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
+      <Collapse in={true} timeout='auto' unmountOnExit>
         <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }} noValidate>
           <TextField
             margin='normal'
