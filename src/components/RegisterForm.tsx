@@ -19,11 +19,6 @@ export default function RegisterForm() {
   } = useForm<User>()
   const navigate = useNavigate()
   const { showSnackBar } = useSnackBar()
-  const [expanded, setExpanded] = useState(false)
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
-  }
 
   const onSubmit: SubmitHandler<User> = async (data) => {
     try {
@@ -44,10 +39,6 @@ export default function RegisterForm() {
     }
   }
 
-  const handleGoogleLogin = async () => {
-    window.location.href = authService.getGoogleLoginUrl()
-  }
-
   return (
     <div>
       <Box
@@ -64,28 +55,8 @@ export default function RegisterForm() {
         <Typography component='h1' variant='h5'>
           Sign Up
         </Typography>
-        <Box>
-          <Typography variant='subtitle1' gutterBottom sx={{ mt: 1, color: 'text.secondary' }}>
-            No need to sign up, simply connect with your Google account and we&apos;ll import your
-            profile.
-          </Typography>
-        </Box>
-        <Button
-          variant='outlined'
-          startIcon={<GoogleIcon />}
-          sx={{ width: 1.0, mt: 2 }}
-          onClick={handleGoogleLogin}
-        >
-          Connect with Google
-        </Button>
 
-        {SHOW_EMAIL_REGISTER_FORM && SHOW_EMAIL_REGISTER_FORM.toLowerCase() === 'true' && (
-          <Button variant='outlined' sx={{ width: 1.0, mt: 2 }} onClick={handleExpandClick}>
-            Sign up with your email address
-          </Button>
-        )}
-
-        <Collapse in={expanded} timeout='auto'>
+        <Collapse in={true} timeout='auto'>
           <Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
