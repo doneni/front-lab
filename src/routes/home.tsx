@@ -28,6 +28,7 @@ export default function Home() {
         }}
       >
         <Container maxWidth='sm'>
+          <img src='/logo.png' alt='Logo' style={{ width: '530px', height: '200px' }} />    
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link href='https://fastapi.tiangolo.com/'>
               <Box
