@@ -1,4 +1,5 @@
-import { Box, Button, Container, Divider, Link, Typography } from '@mui/material'
+import { Box, Button, Container, Divider, Link, Typography, Grid } from '@mui/material'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export async function loader() {
   return {}
@@ -18,6 +19,20 @@ export default function Home() {
           pb: 2,
         }}
       >
+        <Container>
+          <Grid container spacing={4} justifyContent='center'>
+            <Grid item>
+              <Button component={NavLink} to='/challenge' sx={{ color: '#E08F8D', fontSize: '50px', backgroundColor: '#5D1410', margin: '0 10px', borderRadius: '20px', }}>
+                CHALLENGE
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button component={NavLink} to='/' sx={{ color: '#E08F8D', fontSize: '50px', backgroundColor: '#5D1410', margin: '0 10px', borderRadius: '20px', }}>
+                STORY
+              </Button>
+            </Grid>
+          </Grid>
+        </Container>
         <Container maxWidth='sm'>
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link href='https://fastapi.tiangolo.com/'>
