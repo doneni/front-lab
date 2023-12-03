@@ -37,11 +37,11 @@ export default function TopMenuBar() {
   }
 
   return (
-    <AppBar position='absolute'>
+    <AppBar position='absolute' sx={{ backgroundColor: '#4F100C'}}>
       <Toolbar>
         <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
           <Link component={NavLink} to='/' color='inherit' underline='none'>
-            FARMD
+            <img src='/big_logo.png' alt='Logo' style={{ width: '300px', height: '50px' }} /> 
           </Link>
         </Typography>
 
