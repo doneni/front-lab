@@ -11,7 +11,6 @@ import {
   Link,
   Typography,
 } from '@mui/material'
-import { useLoaderData } from 'react-router-dom'
 
 export async function loader() {
   return { }
@@ -21,6 +20,7 @@ export default function Home() {
 
   return (
     <main>
+      <img src='/logo.png' alt='Logo' style={{ width: '100%', height: 'auto', objectFit: 'cover', }} /> 
       <Box
         sx={{
           pt: 8,
@@ -28,7 +28,6 @@ export default function Home() {
         }}
       >
         <Container maxWidth='sm'>
-          <img src='/logo.png' alt='Logo' style={{ width: '530px', height: '200px' }} />    
           <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <Link href='https://fastapi.tiangolo.com/'>
               <Box
