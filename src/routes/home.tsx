@@ -1,26 +1,17 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Container,
-  Divider,
-  Grid,
-  Link,
-  Typography,
-} from '@mui/material'
+import { Box, Button, Container, Divider, Link, Typography } from '@mui/material'
 
 export async function loader() {
-  return { }
+  return {}
 }
 
 export default function Home() {
-
   return (
     <main>
-      <img src='/logo.png' alt='Logo' style={{ width: '100%', height: 'auto', objectFit: 'cover', }} /> 
+      <img
+        src='/logo.png'
+        alt='Logo'
+        style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+      />
       <Box
         sx={{
           pt: 8,
@@ -65,9 +56,7 @@ export default function Home() {
       </Box>
       <Container sx={{ py: 8 }} maxWidth='md'>
         <Box sx={{ mb: 4 }}>
-          <Typography variant='body1'>
-            This is typography variant (body1)
-          </Typography>
+          <Typography variant='body1'>This is typography variant (body1)</Typography>
           <Typography variant='h6' gutterBottom sx={{ mt: 4 }}>
             This is typography variant (h6)
           </Typography>

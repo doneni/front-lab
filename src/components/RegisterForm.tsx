@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { Avatar, Button, TextField, Link, Grid, Box, Typography, Collapse } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
@@ -6,10 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import authService from '../services/auth.service'
 import { useSnackBar } from '../contexts/snackbar'
 import { User } from '../models/user'
-import { GoogleIcon } from './LoginForm'
 import { AxiosError } from 'axios'
-
-const SHOW_EMAIL_REGISTER_FORM: string = import.meta.env.VITE_PWD_SIGNUP_ENABLED
 
 export default function RegisterForm() {
   const {

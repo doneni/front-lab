@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Box,
   Avatar,
@@ -16,7 +15,6 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useSnackBar } from '../contexts/snackbar'
 import { useAuth } from '../contexts/auth'
-import authService from '../services/auth.service'
 import { User } from '../models/user'
 import { AxiosError } from 'axios'
 export function GoogleIcon(props: SvgIconProps) {
@@ -51,7 +49,6 @@ export default function LoginForm() {
   const navigate = useNavigate()
   const { showSnackBar } = useSnackBar()
   const { login } = useAuth()
-  const [expanded, setExpanded] = useState(false)
 
   const onSubmit: SubmitHandler<User> = async (data) => {
     try {

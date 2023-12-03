@@ -37,20 +37,20 @@ export default function TopMenuBar() {
   }
 
   return (
-    <AppBar position='absolute' sx={{ backgroundColor: '#4F100C'}}>
+    <AppBar position='absolute' sx={{ backgroundColor: '#4F100C' }}>
       <Toolbar>
         <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
           <Link component={NavLink} to='/' color='inherit' underline='none'>
-            <img src='/big_logo.png' alt='Logo' style={{ width: '300px', height: '50px' }} /> 
+            <img src='/big_logo.png' alt='Logo' style={{ width: '300px', height: '50px' }} />
           </Link>
         </Typography>
 
         {user === undefined && (
           <Box aria-label='button group'>
-            <Button component={NavLink} to='/login' sx={{ color: '#fff' }}>
+            <Button component={NavLink} to='/login' sx={{ color: '#fff', fontSize: '20px'}}>
               Login
             </Button>
-            <Button component={NavLink} to='/register' sx={{ color: '#fff' }}>
+            <Button component={NavLink} to='/register' sx={{ color: '#fff', fontSize: '20px' }}>
               Register
             </Button>
           </Box>
