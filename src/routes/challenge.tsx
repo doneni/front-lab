@@ -1,22 +1,65 @@
-import { Grid, Container, Paper, Typography } from '@mui/material'
+import { useEffect } from 'react';
+import { Button, Container } from '@mui/material';
+import { useSnackBar } from '../contexts/snackbar';
 
 export default function Challenge() {
+  const { showSnackBar } = useSnackBar();
+
+  const handleResize = () => {
+    const container = document.getElementById('mapContainer');
+    if (container) {
+      const containerWidth = container.offsetWidth;
+      const containerHeight = container.offsetHeight;
+      const image = new Image();
+      image.src = './map.gif';
+
+      image.onload = () => {
+        if (containerWidth < image.width || containerHeight < image.height) {
+          showSnackBar('The screen size is too small to display the entire image.', 'warning');
+        }
+      };
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
-      <img src='/map.gif' alt='map' style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
-      <Grid container spacing={2} justifyContent='center'>
-        <Grid item xs={12} md={7} lg={5}>
-          <Paper
-            sx={{
-              p: 2,
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <Typography>Here comes the map of the city (CHALLENGE MODE)</Typography>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Container>
-  )
+    <main>
+      <Container
+        id='mapContainer'
+        sx={{
+          mt: 2,
+          backgroundImage: 'url(./map.gif)',
+          backgroundPosition: 'center',
+          height: '85vh',
+          position: 'relative',
+        }}
+      >
+        <Button
+          style={{
+            position: 'absolute',
+            top: '2vh',
+            left: '2vh',
+            backgroundSize: '100% 100%',
+            backgroundPosition: 'center',
+            width: '50px',
+            borderRadius: '100%',
+            backgroundColor: '#3F7CB1',
+            overflow: 'hidden',
+          }}
+        >
+          <img
+            src='/dummy.png'
+            alt='Logo'
+            style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+          />
+        </Button>
+      </Container>
+    </main>
+  );
 }
