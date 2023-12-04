@@ -47,7 +47,7 @@ export default function TopMenuBar() {
 
         {user === undefined && (
           <Box aria-label='button group'>
-            <Button component={NavLink} to='/login' sx={{ color: '#fff', fontSize: '20px'}}>
+            <Button component={NavLink} to='/login' sx={{ color: '#fff', fontSize: '20px' }}>
               Login
             </Button>
             <Button component={NavLink} to='/register' sx={{ color: '#fff', fontSize: '20px' }}>
