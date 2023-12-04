@@ -1,32 +1,32 @@
-import { useEffect } from 'react';
-import { Button, Container } from '@mui/material';
-import { useSnackBar } from '../contexts/snackbar';
+import { useEffect } from 'react'
+import { Button, Container } from '@mui/material'
+import { useSnackBar } from '../contexts/snackbar'
 
 export default function Challenge() {
-  const { showSnackBar } = useSnackBar();
+  const { showSnackBar } = useSnackBar()
 
   const handleResize = () => {
-    const container = document.getElementById('mapContainer');
+    const container = document.getElementById('mapContainer')
     if (container) {
-      const containerWidth = container.offsetWidth;
-      const containerHeight = container.offsetHeight;
-      const image = new Image();
-      image.src = './map.gif';
+      const containerWidth = container.offsetWidth
+      const containerHeight = container.offsetHeight
+      const image = new Image()
+      image.src = './map.gif'
 
       image.onload = () => {
         if (containerWidth < image.width || containerHeight < image.height) {
-          showSnackBar('The screen size is too small to display the entire image.', 'warning');
+          showSnackBar('The screen size is too small to display the entire image.', 'warning')
         }
-      };
+      }
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <main>
@@ -61,5 +61,5 @@ export default function Challenge() {
         </Button>
       </Container>
     </main>
-  );
+  )
 }
