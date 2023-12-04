@@ -6,6 +6,8 @@ import { Profile } from './routes/profile'
 import Register from './routes/register'
 import Root from './routes/root'
 import Users, { loader as usersLoader } from './routes/users'
+import Challenge from './routes/challenge'
+import Story from './routes/story'
 
 export const routes = [
   {
@@ -30,6 +32,14 @@ export const routes = [
         path: 'users',
         element: <Users />,
         loader: usersLoader,
+      },
+      {
+        path: 'challenge',
+        element: <Challenge />,
+      },
+      {
+        path: 'story',
+        element: <Story />,
       },
     ],
   },

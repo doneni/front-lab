@@ -27,7 +27,7 @@ export default function Home() {
               </Button>
             </Grid>
             <Grid item>
-              <Button component={NavLink} to='/' sx={{ color: '#E08F8D', fontSize: '50px', backgroundColor: '#5D1410', margin: '0 10px', borderRadius: '20px', }}>
+              <Button component={NavLink} to='/story' sx={{ color: '#E08F8D', fontSize: '50px', backgroundColor: '#5D1410', margin: '0 10px', borderRadius: '20px', }}>
                 STORY
               </Button>
             </Grid>
