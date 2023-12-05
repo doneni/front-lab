@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, Link, Typography, Grid } from '@mui/material'
+import { Box, Button, Container, Divider, Typography, Grid } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
 export async function loader() {
@@ -12,7 +12,7 @@ export default function Home() {
         sx={{
           position: 'relative',
           top: 0,
-          left: 0,        
+          left: 0,
           width: '100%',
           height: 'auto',
           minHeight: '30vh',
@@ -23,7 +23,7 @@ export default function Home() {
         <img
           src='/logo.png'
           alt='Logo'
-          style={{ width: '50%', height: 'auto', objectFit: 'cover', marginLeft: '15vw'}}
+          style={{ width: '50%', height: 'auto', objectFit: 'cover', marginLeft: '15vw' }}
         />
         <Box
           sx={{
@@ -33,7 +33,7 @@ export default function Home() {
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Grid container direction='column' spacing={2} justifyContent='center' >
+          <Grid container direction='column' spacing={2} justifyContent='center'>
             <Grid item>
               <Button
                 component={NavLink}
@@ -79,7 +79,8 @@ export default function Home() {
           </Typography>
           <Divider />
           <Typography variant='body1' gutterBottom sx={{ mt: 4 }}>
-            야망시티는 눈부신 기술의 발전으로 영광을 누려왔습니다. 시민들은 오늘도 안락한 하루를 보내고 있지만... 글쎄요. 위험이 도사리는 이 도시를 구하고 영웅이 되세요.
+            야망시티는 눈부신 기술의 발전으로 영광을 누려왔습니다. 시민들은 오늘도 안락한 하루를
+            보내고 있지만... 글쎄요. 위험이 도사리는 이 도시를 구하고 영웅이 되세요.
           </Typography>
         </Box>
       </Container>
