@@ -15,7 +15,7 @@ export default function CityMap() {
 
       image.onload = () => {
         if (containerWidth < image.width || containerHeight < image.height) {
-          showSnackBar('The screen size is too small to display the entire image.', 'warning')
+          showSnackBar('Current window size is not recommended. Maximize the window with proper resolution.', 'warning')
         }
       }
     }
@@ -38,6 +38,7 @@ export default function CityMap() {
           backgroundPosition: 'center',
           height: '85vh',
           position: 'relative',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <Button
