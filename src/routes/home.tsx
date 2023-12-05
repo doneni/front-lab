@@ -11,24 +11,29 @@ export default function Home() {
       <Container
         sx={{
           position: 'relative',
+          top: 0,
+          left: 0,        
+          width: '100%',
+          height: 'auto',
+          minHeight: '30vh',
+          minWidth: '100vw',
+          backgroundColor: '#5D1410',
         }}
       >
         <img
           src='/logo.png'
           alt='Logo'
-          style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
+          style={{ width: '50%', height: 'auto', objectFit: 'cover', marginLeft: '15vw'}}
         />
-
         <Box
           sx={{
             position: 'absolute',
-            top: '90%',
-            right: '-5%',
+            right: '10%',
+            top: '60%',
             transform: 'translate(-50%, -50%)',
           }}
         >
-          {/* Grid 컨테이너로 감싼 버튼들 */}
-          <Grid container direction='row' spacing={2} justifyContent='center'>
+          <Grid container direction='column' spacing={2} justifyContent='center' >
             <Grid item>
               <Button
                 component={NavLink}
@@ -38,8 +43,8 @@ export default function Home() {
                   fontSize: '24px',
                   backgroundColor: '#E08F8D',
                   borderRadius: '10px',
-                  width: '7vw',
-                  height: '70%',
+                  width: '12vw',
+                  height: '100%',
                 }}
               >
                 CHALLENGE
@@ -54,8 +59,8 @@ export default function Home() {
                   fontSize: '24px',
                   backgroundColor: '#E08F8D',
                   borderRadius: '10px',
-                  width: '7vw',
-                  height: '70%',
+                  width: '12vw',
+                  height: '100%',
                 }}
               >
                 STORY
@@ -64,50 +69,18 @@ export default function Home() {
           </Grid>
         </Box>
       </Container>
-
-      <Container maxWidth='sm'>
-        <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-          <Link href='https://fastapi.tiangolo.com/'>
-            <Box
-              component='img'
-              sx={{
-                width: 250,
-              }}
-              alt='simpleLink'
-              src='fastapi.png'
-            />
-          </Link>
-
-          <Typography variant='h3' sx={{ mr: 2 }} color='text.secondary'>
-            +
-          </Typography>
-
-          <Link href='https://reactjs.org/' underline='none'>
-            <Box sx={{ display: 'flex' }}>
-              <Box
-                component='img'
-                sx={{
-                  width: 100,
-                  mr: 1,
-                }}
-                alt='simpleLink2'
-                src='react.svg'
-              />
-            </Box>
-          </Link>
-        </Box>
-        <Typography variant='h3' align='center' color='text.secondary' sx={{ mt: 5 }}>
-          Hi There
-        </Typography>
-      </Container>
-
       <Container sx={{ py: 8 }} maxWidth='md'>
         <Box sx={{ mb: 4 }}>
-          <Typography variant='body1'>This is typography variant (body1)</Typography>
-          <Typography variant='h6' gutterBottom sx={{ mt: 4 }}>
-            This is typography variant (h6)
+          <Typography variant='h3' fontWeight='fontWeightBold'>
+            Save the City
+          </Typography>
+          <Typography variant='h5' gutterBottom sx={{ mt: 4 }}>
+            The city needs a hero.
           </Typography>
           <Divider />
+          <Typography variant='body1' gutterBottom sx={{ mt: 4 }}>
+            야망시티는 눈부신 기술의 발전으로 영광을 누려왔습니다. 시민들은 오늘도 안락한 하루를 보내고 있지만... 글쎄요. 위험이 도사리는 이 도시를 구하고 영웅이 되세요.
+          </Typography>
         </Box>
       </Container>
     </main>
