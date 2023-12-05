@@ -6,4 +6,3 @@ export interface Challenge {
     description: string;
     connect?: string;
   }
-  
