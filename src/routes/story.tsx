@@ -1,9 +1,11 @@
-import { Grid, Container, Paper, Typography } from '@mui/material'
+import { Grid, Paper, Typography } from '@mui/material'
+import CityMap from '../components/CityMap'
 
-export default function Story() {
+
+export default function Challenge() {
   return (
-    <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
-      <img src='/map.gif' alt='map' style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+    <main>
+      <CityMap></CityMap>
       <Grid container spacing={2} justifyContent='center'>
         <Grid item xs={12} md={7} lg={5}>
           <Paper
@@ -22,6 +24,6 @@ export default function Story() {
           </Paper>
         </Grid>
       </Grid>
-    </Container>
+    </main>
   )
 }
