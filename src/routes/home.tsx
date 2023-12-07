@@ -40,7 +40,7 @@ export default function Home() {
                 to='/challenge'
                 sx={{
                   color: '#5D1410',
-                  fontSize: '24px',
+                  fontSize: '20px',
                   backgroundColor: '#E08F8D',
                   borderRadius: '10px',
                   width: '12vw',
@@ -56,7 +56,7 @@ export default function Home() {
                 to='/story'
                 sx={{
                   color: '#5D1410',
-                  fontSize: '24px',
+                  fontSize: '20px',
                   backgroundColor: '#E08F8D',
                   borderRadius: '10px',
                   width: '12vw',
@@ -69,18 +69,19 @@ export default function Home() {
           </Grid>
         </Box>
       </Container>
-      <Container sx={{ py: 8 }} maxWidth='md'>
+      <Container sx={{ py: 8 }} maxWidth='sm'>
         <Box sx={{ mb: 4 }}>
-          <Typography variant='h3' fontWeight='fontWeightBold'>
+          <Typography variant='h4' fontWeight='fontWeightBold'>
             Save the City
           </Typography>
-          <Typography variant='h5' gutterBottom sx={{ mt: 4 }}>
+          <Typography variant='h6' gutterBottom sx={{ mt: 4 }}>
             The city needs a hero.
           </Typography>
           <Divider />
-          <Typography variant='body1' gutterBottom sx={{ mt: 4 }}>
-            야망시티는 눈부신 기술의 발전으로 영광을 누려왔습니다. 시민들은 오늘도 안락한 하루를
-            보내고 있지만... 글쎄요. 위험이 도사리는 이 도시를 구하고 영웅이 되세요.
+          <Typography variant='body1' gutterBottom sx={{ mt: 4, whiteSpace: 'pre-line', lineHeight: 0.9 }}>
+            <p>야망시티는 눈부신 기술의 발전으로 영광을 누리고 있습니다.</p>
+            <p>시민들은 오늘도 안락한 하루를 보내고 있지만... 글쎄요.</p>
+            <p>위험이 도사리는 이 도시를 구하고 영웅이 되세요.</p>
           </Typography>
         </Box>
       </Container>
