@@ -53,7 +53,13 @@ export default function CityMap() {
             backgroundColor: '#3F7CB1',
             overflow: 'hidden',
           }}
-        />
+        >
+          <img
+            src='/smile.png'
+            alt='Logo'
+            style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+          />
+        </Button>
       </Container>
     </main>
   )
