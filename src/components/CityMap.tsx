@@ -15,7 +15,10 @@ export default function CityMap() {
 
       image.onload = () => {
         if (containerWidth < image.width || containerHeight < image.height) {
-          showSnackBar('Current window size is not recommended. Maximize the window with proper resolution.', 'warning')
+          showSnackBar(
+            'Current window size is not recommended. Maximize the window with proper resolution.',
+            'warning',
+          )
         }
       }
     }
