@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container } from '@mui/material'
 import { useSnackBar } from '../contexts/snackbar'
+import ChallengeModal from './ChallengeModal'
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
@@ -31,6 +32,16 @@ export default function CityMap() {
     }
   }, [])
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main>
       <Container
@@ -45,6 +56,7 @@ export default function CityMap() {
         }}
       >
         <Button
+          onClick={openModal}
           style={{
             position: 'absolute',
             top: '2vh',
@@ -63,6 +75,9 @@ export default function CityMap() {
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
+        {isModalOpen && (
+        <ChallengeModal onClose={closeModal} />
+        )}
       </Container>
     </main>
   )
