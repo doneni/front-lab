@@ -4,5 +4,5 @@ export interface Challenge {
   region: string
   layer: string
   description: string
-  connect?: string
+  connect: string
 }
