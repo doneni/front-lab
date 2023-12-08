@@ -32,15 +32,15 @@ export default function CityMap() {
     }
   }, [])
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModal = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const closeModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   return (
     <main>
@@ -75,9 +75,7 @@ export default function CityMap() {
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
-        {isModalOpen && (
-        <ChallengeModal onClose={closeModal} />
-        )}
+        {isModalOpen && <ChallengeModal onClose={closeModal} />}
       </Container>
     </main>
   )

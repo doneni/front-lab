@@ -1,9 +1,9 @@
-import React from 'react';
-import Modal from '@mui/material/Modal';
-import { Button, Box } from '@mui/material';
+import React from 'react'
+import Modal from '@mui/material/Modal'
+import { Button, Box } from '@mui/material'
 
 interface ChallengeModalProps {
-  onClose: () => void; // 모달을 닫기 위한 콜백 함수
+  onClose: () => void // 모달을 닫기 위한 콜백 함수
 }
 
 const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose }) => {
@@ -31,7 +31,7 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose }) => {
         <Button onClick={onClose}>Close Modal</Button>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default ChallengeModal;
+export default ChallengeModal

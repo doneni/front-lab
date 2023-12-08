@@ -78,7 +78,11 @@ export default function Home() {
             The city needs a hero.
           </Typography>
           <Divider />
-          <Typography variant='body1' gutterBottom sx={{ mt: 4, whiteSpace: 'pre-line', lineHeight: 0.9 }}>
+          <Typography
+            variant='body1'
+            gutterBottom
+            sx={{ mt: 4, whiteSpace: 'pre-line', lineHeight: 0.9 }}
+          >
             <p>야망시티는 눈부신 기술의 발전으로 영광을 누리고 있습니다.</p>
             <p>시민들은 오늘도 안락한 하루를 보내고 있지만... 글쎄요.</p>
             <p>위험이 도사리는 이 도시를 구하고 영웅이 되세요.</p>

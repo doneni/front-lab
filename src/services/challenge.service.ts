@@ -21,7 +21,7 @@ class ChallengeService {
   }
 }
 
-export default new ChallengeService
+export default new ChallengeService()
 
 /*
 export interface Challenge {
@@ -33,4 +33,3 @@ export interface Challenge {
   connect: string
 }
 */
-
