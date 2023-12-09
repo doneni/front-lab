@@ -47,6 +47,18 @@ export default function CityMap() {
     setIsModalOpen(false);
   };
 
+  const createButtonStyle = (top: string, left: string) => ({
+    position: 'absolute' as 'absolute',
+    backgroundSize: '100% 100%',
+    backgroundPosition: 'center',
+    width: '50px',
+    borderRadius: '100%',
+    backgroundColor: '#3F7CB1',
+    overflow: 'hidden',
+    top,
+    left,
+  });
+
   return (
     <main>
       <Container
@@ -62,17 +74,7 @@ export default function CityMap() {
       >
         <Button
           onClick={() => openModal(selectedLayer)}
-          style={{
-            position: 'absolute',
-            top: '2vh',
-            left: '2vh',
-            backgroundSize: '100% 100%',
-            backgroundPosition: 'center',
-            width: '50px',
-            borderRadius: '100%',
-            backgroundColor: '#3F7CB1',
-            overflow: 'hidden',
-          }}
+          style={createButtonStyle('2vh', '2vw')}
         >
           <img
             src='/smile.png'
