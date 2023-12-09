@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Container } from '@mui/material'
 import { useSnackBar } from '../contexts/snackbar'
 import ChallengeModal from './ChallengeModal'

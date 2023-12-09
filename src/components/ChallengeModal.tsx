@@ -1,15 +1,38 @@
-import React from 'react'
-import Modal from '@mui/material/Modal'
-import { Button, Box } from '@mui/material'
+import React, { useState, useEffect } from 'react';
+import Modal from '@mui/material/Modal';
+import { Button, Box, Typography } from '@mui/material';
+import ChallengeService from '../services/challenge.service';
+import { Challenge } from '../models/challenge';
 
 interface ChallengeModalProps {
-  onClose: () => void // 모달을 닫기 위한 콜백 함수
+  onClose: () => void;
 }
 
 const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose }) => {
+  const [challenges, setChallenges] = useState<Challenge[]>([]);
+
+  useEffect(() => {
+    // Challenge 데이터를 가져오는 비동기 함수
+    const fetchChallenges = async () => {
+      try {
+        const response = await ChallengeService.getAllChallenges();
+        const challengesArray = response.challenges;
+
+        console.log(challengesArray);
+
+        setChallenges(challengesArray);
+      } catch (error) {
+        // 오류 처리
+        console.error('Error fetching challenges:', error);
+      }
+    };
+
+    // 비동기 함수 호출
+    fetchChallenges();
+  }, []);
+
   return (
     <Modal open={true} onClose={onClose}>
-      {/* Modal 안의 컨텐츠 */}
       <Box
         sx={{
           position: 'absolute',
@@ -22,16 +45,23 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose }) => {
           p: 4,
         }}
       >
-        <div>
-          <p>This is the content of the modal.</p>
-          {/* 다양한 모달 컨텐츠를 추가할 수 있음 */}
-        </div>
-
-        {/* 모달 닫기 버튼 또는 다른 이벤트를 통해 onClose 호출 */}
         <Button onClick={onClose}>Close Modal</Button>
+
+        <Typography variant="h4" sx={{ mt: 2 }}>
+          Challenge List
+        </Typography>
+
+        <ul>
+          {challenges.map((challenge, index) => (
+            <li key={index}>
+              <Typography>{challenge.title}</Typography>
+              <Typography variant="body2">{challenge.description}</Typography>
+            </li>
+          ))}
+        </ul>
       </Box>
     </Modal>
-  )
-}
+  );
+};
 
-export default ChallengeModal
+export default ChallengeModal;
