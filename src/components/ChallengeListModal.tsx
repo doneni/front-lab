@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material';
 import ChallengeService from '../services/challenge.service';
-import { Challenge, Challenges } from '../models/challenge';
+import { Challenge } from '../models/challenge';
 
 interface ChallengeListModalProps {
   onClose: () => void;
@@ -15,10 +15,7 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
     const fetchChallenges = async () => {
       try {
         const response = await ChallengeService.getAllChallenges();
-        const challengesArray = (response.challenges as Challenge[]) || [];
-
-        console.log(challengesArray);
-
+        const challengesArray = response.challenges
         setChallenges(challengesArray);
       } catch (error) {
         console.error('Error fetching challenges:', error);

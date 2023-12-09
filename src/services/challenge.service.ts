@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { User } from '../models/user'
-import { Challenge } from '../models/challenge'
+import { Challenge, Challenges } from '../models/challenge'
 
 const API_URL = import.meta.env.VITE_BACKEND_API_URL
 
 class ChallengeService {
-  async getAllChallenges(): Promise<Challenge[]> {
+  async getAllChallenges(): Promise<Challenges> {
     const response = await axios.get(API_URL + 'challenge/get-all-challenges')
+    console.log(response.data.challenge)
     return response.data
   }
 

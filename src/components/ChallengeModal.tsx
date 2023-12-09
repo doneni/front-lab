@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material';
-import ChallengeService from '../services/challenge.service';
-import { Challenge } from '../models/challenge';
+// import ChallengeService from '../services/challenge.service';
+// import { Challenge } from '../models/challenge';
 
 interface ChallengeModalProps {
   onClose: () => void;
@@ -11,6 +11,7 @@ interface ChallengeModalProps {
 }
 
 const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region }) => {
+  /*
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region 
 
     fetchChallenges();
   }, []);
-
+  */
   return (
     <Modal open={true} onClose={onClose}>
       <Box
