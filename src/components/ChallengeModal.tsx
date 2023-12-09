@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material';
 // import ChallengeService from '../services/challenge.service';

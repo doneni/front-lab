@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Container, Grid } from '@mui/material';
 import { useSnackBar } from '../contexts/snackbar';
 import ChallengeModal from './ChallengeModal';
@@ -6,6 +6,13 @@ import ChallengeListModal from './ChallengeListModal';
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar();
+  const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4'];
+  const regions = ['REGION1', 'REGION2', 'REGION3', 'REGION4', 'REGION5', 'REGION6', 'REGION7', 'REGION8', 'REGION9', 'REGION10']
+  const location = [['38vh', '6vw'], ['9vh', '14.5vw'], ['53vh', '18.5vw'], ['42vh', '60vw'], ['17vh', '23vw'], ['40vh', '49vw'], ['58vh', '40vw'], ['60vh', '60vw'], ['48vh', '31.5vw'], ['23vh', '39vw']]
+  const [isChallengeListModalOpen, setIsChallengeListModalOpen] = useState(false)
+  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
+  const [selectedLayer, setSelectedLayer] = useState('LAYER1');
+  const [selectedRegion, setSelectedRegion] = useState('REGION1');
 
   const handleResize = () => {
     const container = document.getElementById('mapContainer')
@@ -26,20 +33,12 @@ export default function CityMap() {
     }
   }
 
-
   useEffect(() => {
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4'];
-  const regions = ['REGION1', 'REGION2', 'REGION3', 'REGION4', 'REGION5', 'REGION6', 'REGION7', 'REGION8', 'REGION9', 'REGION10']
-  const [isChallengeListModalOpen, setIsChallengeListModalOpen] = useState(false)
-  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
-  const [selectedLayer, setSelectedLayer] = useState('LAYER1');
-  const [selectedRegion, setSelectedRegion] = useState('REGION1');
 
   const openChallengeListModal = () => {
     setIsChallengeListModalOpen(true);
@@ -126,68 +125,16 @@ export default function CityMap() {
           ))}
         </Grid>
 
-
-        <Button
-          key={regions[0]}
-          onClick={() => openChallengeModal(selectedLayer, regions[0])}
-          style={createButtonStyle('38vh', '6vw')}
-        >
-          {regions[0]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[1])}
-          style={createButtonStyle('9vh', '14.5vw')}
-        >
-          {regions[1]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[2])}
-          style={createButtonStyle('53vh', '18.5vw')}
-        >
-          {regions[2]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[3])}
-          style={createButtonStyle('42vh', '60vw')}
-        >
-          {regions[3]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[4])}
-          style={createButtonStyle('17vh', '23vw')}
-        >
-          {regions[4]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[5])}
-          style={createButtonStyle('40vh', '49vw')}
-        >
-          {regions[5]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[6])}
-          style={createButtonStyle('58vh', '40vw')}
-        >
-          {regions[6]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[7])}
-          style={createButtonStyle('60vh', '60vw')}
-        >
-          {regions[7]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[8])}
-          style={createButtonStyle('48vh', '31.5vw')}
-        >
-          {regions[8]}
-        </Button>
-        <Button
-          onClick={() => openChallengeModal(selectedLayer, regions[9])}
-          style={createButtonStyle('23vh', '39vw')}
-        >
-          {regions[9]}
-        </Button>
+        {regions.map((region, index) => (
+          <Grid item key={region}>
+            <Button
+              onClick={() => openChallengeModal(selectedLayer, region)}
+              style={createButtonStyle(location[index][0], location[index][1])}
+            >
+              {region}
+            </Button>
+          </Grid>
+        ))}
 
         {isChallengeModalOpen && (
           <ChallengeModal layer={selectedLayer} region={selectedRegion} onClose={closeChallengeModal} />
