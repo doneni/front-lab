@@ -7,9 +7,10 @@ import { Challenge } from '../models/challenge';
 interface ChallengeModalProps {
   onClose: () => void;
   layer: string;
+  region: string;
 }
 
-const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer }) => {
+const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region }) => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
   useEffect(() => {
@@ -51,6 +52,9 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer }) => {
 
         <Typography>
           Layer: {layer}
+        </Typography>
+        <Typography>
+          Region: {region}    
         </Typography>
 
       </Box>

@@ -35,11 +35,14 @@ export default function CityMap() {
   }, []);
 
   const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4'];
+  const regions = ['REGION1', 'REGION2', 'REGION3', 'REGION4', 'REGION5', 'REGION6', 'REGION7', 'REGION8', 'REGION9', 'REGION10']
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedLayer, setSelectedLayer] = useState('LAYER1');
+  const [selectedRegion, setSelectedRegion] = useState('REGION1');
 
-  const openModal = (layer: string) => {
+  const openModal = (layer: string, region: string) => {
     setSelectedLayer(layer);
+    setSelectedRegion(region);
     setIsModalOpen(true);
   };
 
@@ -55,6 +58,7 @@ export default function CityMap() {
     borderRadius: '100%',
     backgroundColor: '#3F7CB1',
     overflow: 'hidden',
+    color: 'white',
     top,
     left,
   });
@@ -73,7 +77,7 @@ export default function CityMap() {
         }}
       >
         <Button
-          onClick={() => openModal(selectedLayer)}
+          onClick={() => openModal(selectedLayer, selectedRegion)}
           style={createButtonStyle('2vh', '2vw')}
         >
           <img
@@ -113,8 +117,71 @@ export default function CityMap() {
           ))}
         </Grid>
 
+
+        <Button
+          key={regions[0]}
+          onClick={() => openModal(selectedLayer, regions[0])}
+          style={createButtonStyle('38vh', '6vw')}
+        >
+          {regions[0]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[1])}
+          style={createButtonStyle('9vh', '14.5vw')}
+        >
+          {regions[1]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[2])}
+          style={createButtonStyle('53vh', '18.5vw')}
+        >
+          {regions[2]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[3])}
+          style={createButtonStyle('42vh', '60vw')}
+        >
+          {regions[3]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[4])}
+          style={createButtonStyle('17vh', '23vw')}
+        >
+          {regions[4]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[5])}
+          style={createButtonStyle('40vh', '49vw')}
+        >
+          {regions[5]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[6])}
+          style={createButtonStyle('58vh', '40vw')}
+        >
+          {regions[6]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[7])}
+          style={createButtonStyle('60vh', '60vw')}
+        >
+          {regions[7]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[8])}
+          style={createButtonStyle('48vh', '31.5vw')}
+        >
+          {regions[8]}
+        </Button>
+        <Button
+          onClick={() => openModal(selectedLayer, regions[9])}
+          style={createButtonStyle('23vh', '39vw')}
+        >
+          {regions[9]}
+        </Button>
+
         {isModalOpen && (
-          <ChallengeModal layer={selectedLayer} onClose={closeModal} />
+          <ChallengeModal layer={selectedLayer} region={selectedRegion} onClose={closeModal} />
         )}        
 
       </Container>
