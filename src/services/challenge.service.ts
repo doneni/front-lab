@@ -7,7 +7,6 @@ const API_URL = import.meta.env.VITE_BACKEND_API_URL
 class ChallengeService {
   async getAllChallenges(): Promise<Challenge[]> {
     const response = await axios.get(API_URL + 'challenge/get-all-challenges')
-    console.log(response.data)
     return response.data
   }
 

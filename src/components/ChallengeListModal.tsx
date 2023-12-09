@@ -4,12 +4,11 @@ import { Button, Box, Typography } from '@mui/material';
 import ChallengeService from '../services/challenge.service';
 import { Challenge } from '../models/challenge';
 
-interface ChallengeModalProps {
+interface ChallengeListModalProps {
   onClose: () => void;
-  layer: string;
 }
 
-const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer }) => {
+const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
   useEffect(() => {
@@ -46,16 +45,23 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer }) => {
         <Button onClick={onClose}>Close Modal</Button>
 
         <Typography variant="h4" sx={{ mt: 2 }}>
-          Try Me!
+          Challenge List
         </Typography>
 
-        <Typography>
-          Layer: {layer}
-        </Typography>
-
+        <ul>
+          {challenges.map((challenge, index) => (
+            <li key={index}>
+              <Typography>{challenge.title}</Typography>
+              <Typography variant="body2">{challenge.layer}</Typography>
+              <Typography variant="body2">{challenge.region}</Typography>
+              <Typography variant="body2">{challenge.description}</Typography>
+              <Typography variant="body2">{challenge.connect}</Typography>
+            </li>
+          ))}
+        </ul>
       </Box>
     </Modal>
   );
 };
 
-export default ChallengeModal;
+export default ChallengeListModal;

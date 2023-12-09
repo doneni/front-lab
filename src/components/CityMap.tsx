@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Button, Container } from '@mui/material'
-import { useSnackBar } from '../contexts/snackbar'
-import ChallengeModal from './ChallengeModal'
+import React, { useEffect, useState } from 'react';
+import { Button, Container, Grid } from '@mui/material';
+import { useSnackBar } from '../contexts/snackbar';
+import ChallengeModal from './ChallengeModal';
+import ChallengeListModal from './ChallengeListModal';
 
 export default function CityMap() {
-  const { showSnackBar } = useSnackBar()
+  const { showSnackBar } = useSnackBar();
 
   const handleResize = () => {
     const container = document.getElementById('mapContainer')
@@ -25,22 +26,26 @@ export default function CityMap() {
     }
   }
 
+
   useEffect(() => {
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedLayer, setSelectedLayer] = useState('LAYER1');
 
-  const openModal = () => {
-    setIsModalOpen(true)
-  }
+  const openModal = (layer: string) => {
+    setSelectedLayer(layer);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
-    setIsModalOpen(false)
-  }
+    setIsModalOpen(false);
+  };
 
   return (
     <main>
@@ -56,7 +61,7 @@ export default function CityMap() {
         }}
       >
         <Button
-          onClick={openModal}
+          onClick={() => openModal(selectedLayer)}
           style={{
             position: 'absolute',
             top: '2vh',
@@ -75,7 +80,36 @@ export default function CityMap() {
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
-        {isModalOpen && <ChallengeModal onClose={closeModal} />}
+        <Grid
+          sx={{
+            backgroundColor: 'white',
+          }}
+          spacing={0}
+          direction='column'
+          alignItems='center'
+          justifyContent='center'
+          style={{ 
+            minHeight: '10vh', 
+            width: '10vh',
+            position: 'absolute',
+            top: '60vh',
+            left: '3vw',
+           }}
+        >
+          {layers.map((layer) => (
+            <Button
+              key={layer}
+              onClick={() => setSelectedLayer(layer)}
+            >
+              {layer}
+            </Button>
+          ))}
+        </Grid>
+
+        {isModalOpen && (
+          <ChallengeModal layer={selectedLayer} onClose={closeModal} />
+        )}        
+
       </Container>
     </main>
   )
