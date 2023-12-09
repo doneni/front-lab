@@ -12,22 +12,19 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose }) => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
   useEffect(() => {
-    // Challenge 데이터를 가져오는 비동기 함수
     const fetchChallenges = async () => {
       try {
         const response = await ChallengeService.getAllChallenges();
-        const challengesArray = response.challenges;
+        const challengesArray = (response.challenges as Challenge[]) || [];
 
         console.log(challengesArray);
 
         setChallenges(challengesArray);
       } catch (error) {
-        // 오류 처리
         console.error('Error fetching challenges:', error);
       }
     };
 
-    // 비동기 함수 호출
     fetchChallenges();
   }, []);
 
