@@ -81,25 +81,30 @@ export default function CityMap() {
           />
         </Button>
         <Grid
-          sx={{
-            backgroundColor: 'white',
-          }}
           spacing={0}
           direction='column'
           alignItems='center'
           justifyContent='center'
           style={{ 
-            minHeight: '10vh', 
-            width: '10vh',
+            backgroundColor: 'white',
+            minHeight: '10vh',
+            maxWidth: '10vw',
             position: 'absolute',
-            top: '60vh',
-            left: '3vw',
+            top: '62vh',
+            left: '1.5vw',
            }}
         >
           {layers.map((layer) => (
             <Button
               key={layer}
               onClick={() => setSelectedLayer(layer)}
+              sx={{
+                borderRadius: 0,
+                backgroundColor: selectedLayer === layer ? 'grey' : 'white',
+                color: selectedLayer === layer ? 'black' : 'black',
+                fontSize: '14px',
+                width: '10vw',
+              }}
             >
               {layer}
             </Button>
