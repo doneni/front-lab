@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material';
 import ChallengeService from '../services/challenge.service';
-import { Challenge } from '../models/challenge';
+import { Challenge, Challenges } from '../models/challenge';
 
 interface ChallengeListModalProps {
   onClose: () => void;

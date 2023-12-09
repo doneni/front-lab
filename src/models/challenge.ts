@@ -4,4 +4,9 @@ export interface Challenge {
   layer: string
   description: string
   connect: string
+
+}
+
+export interface Challenges {
+  challenges: Challenge[]
 }
