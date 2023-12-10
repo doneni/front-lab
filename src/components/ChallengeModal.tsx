@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box, Typography } from '@mui/material';
-// import ChallengeService from '../services/challenge.service';
-// import { Challenge } from '../models/challenge';
+import ChallengeService from '../services/challenge.service';
+import { Challenge } from '../models/challenge';
 
 interface ChallengeModalProps {
   onClose: () => void;
@@ -11,26 +11,22 @@ interface ChallengeModalProps {
 }
 
 const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region }) => {
-  /*
-  const [challenges, setChallenges] = useState<Challenge[]>([]);
-
+  const [challenge, setChallenge] = useState<Challenge>();
+  
   useEffect(() => {
-    const fetchChallenges = async () => {
-      try {
-        const response = await ChallengeService.getAllChallenges();
-        const challengesArray = (response.challenges as Challenge[]) || [];
+    const fetchChallenge = async () => {
+        try {
+            const response = await ChallengeService.getChallenge(layer, region);
 
-        console.log(challengesArray);
-
-        setChallenges(challengesArray);
-      } catch (error) {
-        console.error('Error fetching challenges:', error);
-      }
+            setChallenge(response);
+        } catch (error) {
+            console.error('Error fetching challenge:', error);
+        }
     };
 
-    fetchChallenges();
-  }, []);
-  */
+    fetchChallenge();
+  })
+
   return (
     <Modal open={true} onClose={onClose}>
       <Box
@@ -57,6 +53,20 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region 
         <Typography>
           Region: {region}    
         </Typography>
+
+        {challenge && (
+        <>
+          <Typography>
+            Title: {challenge.title}
+          </Typography>
+          <Typography>
+            Description: {challenge.description}
+          </Typography>
+          <Typography>
+            Connect: {challenge.connect}
+          </Typography>
+        </>
+      )}
 
       </Box>
     </Modal>

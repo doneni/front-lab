@@ -64,7 +64,7 @@ export default function CityMap() {
     backgroundPosition: 'center',
     width: '50px',
     borderRadius: '100%',
-    backgroundColor: '#3F7CB1',
+    backgroundColor: 'black', // '#3F7CB1',
     overflow: 'hidden',
     color: 'white',
     top,
