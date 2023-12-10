@@ -1,18 +1,40 @@
-import { useEffect, useState } from 'react';
-import { Button, Container, Grid } from '@mui/material';
-import { useSnackBar } from '../contexts/snackbar';
-import ChallengeModal from './ChallengeModal';
-import ChallengeListModal from './ChallengeListModal';
+import { useEffect, useState } from 'react'
+import { Button, Container, Grid } from '@mui/material'
+import { useSnackBar } from '../contexts/snackbar'
+import ChallengeModal from './ChallengeModal'
+import ChallengeListModal from './ChallengeListModal'
 
 export default function CityMap() {
-  const { showSnackBar } = useSnackBar();
-  const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4'];
-  const regions = ['REGION1', 'REGION2', 'REGION3', 'REGION4', 'REGION5', 'REGION6', 'REGION7', 'REGION8', 'REGION9', 'REGION10']
-  const location = [['38vh', '6vw'], ['9vh', '14.5vw'], ['53vh', '18.5vw'], ['42vh', '60vw'], ['17vh', '23vw'], ['40vh', '49vw'], ['58vh', '40vw'], ['60vh', '60vw'], ['48vh', '31.5vw'], ['23vh', '39vw']]
+  const { showSnackBar } = useSnackBar()
+  const layers = ['LAYER1', 'LAYER2', 'LAYER3', 'LAYER4']
+  const regions = [
+    'REGION1',
+    'REGION2',
+    'REGION3',
+    'REGION4',
+    'REGION5',
+    'REGION6',
+    'REGION7',
+    'REGION8',
+    'REGION9',
+    'REGION10',
+  ]
+  const location = [
+    ['38vh', '6vw'],
+    ['9vh', '14.5vw'],
+    ['53vh', '18.5vw'],
+    ['42vh', '60vw'],
+    ['17vh', '23vw'],
+    ['40vh', '49vw'],
+    ['58vh', '40vw'],
+    ['60vh', '60vw'],
+    ['48vh', '31.5vw'],
+    ['23vh', '39vw'],
+  ]
   const [isChallengeListModalOpen, setIsChallengeListModalOpen] = useState(false)
-  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
-  const [selectedLayer, setSelectedLayer] = useState('LAYER1');
-  const [selectedRegion, setSelectedRegion] = useState('REGION1');
+  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false)
+  const [selectedLayer, setSelectedLayer] = useState('LAYER1')
+  const [selectedRegion, setSelectedRegion] = useState('REGION1')
 
   const handleResize = () => {
     const container = document.getElementById('mapContainer')
@@ -34,29 +56,29 @@ export default function CityMap() {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const openChallengeListModal = () => {
-    setIsChallengeListModalOpen(true);
+    setIsChallengeListModalOpen(true)
   }
 
   const closeChallengeListModal = () => {
-    setIsChallengeListModalOpen(false);
+    setIsChallengeListModalOpen(false)
   }
 
   const openChallengeModal = (layer: string, region: string) => {
-    setSelectedLayer(layer);
-    setSelectedRegion(region);
-    setIsChallengeModalOpen(true);
-  };
+    setSelectedLayer(layer)
+    setSelectedRegion(region)
+    setIsChallengeModalOpen(true)
+  }
 
   const closeChallengeModal = () => {
-    setIsChallengeModalOpen(false);
-  };
+    setIsChallengeModalOpen(false)
+  }
 
   const createButtonStyle = (top: string, left: string) => ({
     position: 'absolute' as 'absolute',
@@ -69,7 +91,7 @@ export default function CityMap() {
     color: 'white',
     top,
     left,
-  });
+  })
 
   return (
     <main>
@@ -84,10 +106,7 @@ export default function CityMap() {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <Button
-          onClick={() => openChallengeListModal()}
-          style={createButtonStyle('2vh', '2vw')}
-        >
+        <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw')}>
           <img
             src='/smile.png'
             alt='Logo'
@@ -99,14 +118,14 @@ export default function CityMap() {
           direction='column'
           alignItems='center'
           justifyContent='center'
-          style={{ 
+          style={{
             backgroundColor: 'white',
             minHeight: '10vh',
             maxWidth: '10vw',
             position: 'absolute',
             top: '62vh',
             left: '1.5vw',
-           }}
+          }}
         >
           {layers.map((layer) => (
             <Button
@@ -137,13 +156,14 @@ export default function CityMap() {
         ))}
 
         {isChallengeModalOpen && (
-          <ChallengeModal layer={selectedLayer} region={selectedRegion} onClose={closeChallengeModal} />
-        )}   
+          <ChallengeModal
+            layer={selectedLayer}
+            region={selectedRegion}
+            onClose={closeChallengeModal}
+          />
+        )}
 
-        {isChallengeListModalOpen && (
-          <ChallengeListModal onClose={closeChallengeListModal} />
-        )}      
-
+        {isChallengeListModalOpen && <ChallengeListModal onClose={closeChallengeListModal} />}
       </Container>
     </main>
   )
