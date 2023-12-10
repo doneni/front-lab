@@ -12,20 +12,26 @@ interface ChallengeModalProps {
 
 const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region }) => {
   const [challenge, setChallenge] = useState<Challenge>();
-  
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchChallenge = async () => {
-        try {
-            const response = await ChallengeService.getChallenge(layer, region);
-
-            setChallenge(response);
-        } catch (error) {
+      try {
+        const response = await ChallengeService.getChallenge(layer, region);
+        setChallenge(response);
+        setErrorMsg(null);
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+            setErrorMsg("There's no challenge. update soon!")
+        } else {
             console.error('Error fetching challenge:', error);
+            setErrorMsg(`Error fetching challenge: ${error.message}`);
         }
+      }
     };
 
     fetchChallenge();
-  })
+  }, [layer, region]);
 
   return (
     <Modal open={true} onClose={onClose}>
@@ -42,31 +48,37 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region 
         }}
       >
         <Button onClick={onClose}>Close Modal</Button>
-
-        <Typography variant="h4" sx={{ mt: 2 }}>
-          Try Me!
-        </Typography>
-
         <Typography>
-          Layer: {layer}
+            <b>you are currently at</b>
+            <p>layer: {layer}</p>
+            <p>regoin: {region}</p>
         </Typography>
-        <Typography>
-          Region: {region}    
-        </Typography>
+
+        
+
+
+        {errorMsg && (
+            <Typography variant="h4" sx={{ mt: 2 }}>
+              {errorMsg}
+            </Typography>
+        )}
 
         {challenge && (
-        <>
-          <Typography>
-            Title: {challenge.title}
-          </Typography>
-          <Typography>
-            Description: {challenge.description}
-          </Typography>
-          <Typography>
-            Connect: {challenge.connect}
-          </Typography>
-        </>
-      )}
+          <>
+            <Typography variant="h4" sx={{ mt: 2 }}>
+              Try Me!
+            </Typography>
+            <Typography>
+              Title: {challenge.title}
+            </Typography>
+            <Typography>
+              Description: {challenge.description}
+            </Typography>
+            <Typography>
+              Connect: {challenge.connect}
+            </Typography>
+          </>
+        )}
 
       </Box>
     </Modal>
