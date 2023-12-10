@@ -1,29 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import Modal from '@mui/material/Modal';
-import { Button, Box, Typography } from '@mui/material';
-import ChallengeService from '../services/challenge.service';
-import { Challenge } from '../models/challenge';
+import React, { useState, useEffect } from 'react'
+import Modal from '@mui/material/Modal'
+import { Button, Box, Typography } from '@mui/material'
+import ChallengeService from '../services/challenge.service'
+import { Challenge } from '../models/challenge'
 
 interface ChallengeListModalProps {
-  onClose: () => void;
+  onClose: () => void
 }
 
 const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
-  const [challenges, setChallenges] = useState<Challenge[]>([]);
+  const [challenges, setChallenges] = useState<Challenge[]>([])
 
   useEffect(() => {
     const fetchChallenges = async () => {
       try {
-        const response = await ChallengeService.getAllChallenges();
+        const response = await ChallengeService.getAllChallenges()
         const challengesArray = response.challenges
-        setChallenges(challengesArray);
+        setChallenges(challengesArray)
       } catch (error) {
-        console.error('Error fetching challenges:', error);
+        console.error('Error fetching challenges:', error)
       }
-    };
+    }
 
-    fetchChallenges();
-  }, []);
+    fetchChallenges()
+  }, [])
 
   return (
     <Modal open={true} onClose={onClose}>
@@ -41,7 +41,7 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
       >
         <Button onClick={onClose}>Close Modal</Button>
 
-        <Typography variant="h4" sx={{ mt: 2 }}>
+        <Typography variant='h4' sx={{ mt: 2 }}>
           Challenge List
         </Typography>
 
@@ -49,16 +49,16 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
           {challenges.map((challenge, index) => (
             <li key={index}>
               <Typography>{challenge.title}</Typography>
-              <Typography variant="body2">{challenge.layer}</Typography>
-              <Typography variant="body2">{challenge.region}</Typography>
-              <Typography variant="body2">{challenge.description}</Typography>
-              <Typography variant="body2">{challenge.connect}</Typography>
+              <Typography variant='body2'>{challenge.layer}</Typography>
+              <Typography variant='body2'>{challenge.region}</Typography>
+              <Typography variant='body2'>{challenge.description}</Typography>
+              <Typography variant='body2'>{challenge.connect}</Typography>
             </li>
           ))}
         </ul>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default ChallengeListModal;
+export default ChallengeListModal
