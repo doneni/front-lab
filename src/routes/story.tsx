@@ -1,6 +1,4 @@
-import { Grid,
-    
-     Paper, Typography } from '@mui/material'
+import { Grid, Paper, Typography } from '@mui/material'
 import CityMap from '../components/CityMap'
 
 export default function Challenge() {
