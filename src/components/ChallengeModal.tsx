@@ -23,6 +23,8 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region 
       } catch (error: any) {
         if (error.response && error.response.status === 404) {
             setErrorMsg("There's no challenge. update soon!")
+        } else if (error.response && error.response.status === 401) {
+            setErrorMsg("Login First")
         } else {
             console.error('Error fetching challenge:', error);
             setErrorMsg(`Error fetching challenge: ${error.message}`);
