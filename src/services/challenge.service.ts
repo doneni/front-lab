@@ -26,10 +26,11 @@ class ChallengeService {
 
   async checkFlag(title: string, user_flag: string): Promise<boolean> {
     const response = await axios.post(API_URL + 'challenge/check-flag', {
-      title, user_flag,
-    });
+      title,
+      user_flag,
+    })
 
-    return response.data.correct;
+    return response.data.correct
   }
 }
 

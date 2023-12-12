@@ -1,43 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import Modal from '@mui/material/Modal';
-import { Button, Box,Typography } from '@mui/material';
-import EndingService from '../services/ending.service';
-import ChallengeService from '../services/challenge.service';
+import React, { useState, useEffect } from 'react'
+import Modal from '@mui/material/Modal'
+import { Button, Box, Typography } from '@mui/material'
+import EndingService from '../services/ending.service'
+import ChallengeService from '../services/challenge.service'
 import { Ending } from '../models/ending'
 import { Challenge } from '../models/challenge'
 
 interface EndingModalProps {
-  onClose: () => void;
+  onClose: () => void
 }
 
 const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
-    const [ending, setEnding] = useState<Ending | null>(null)
-    const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
+  const [ending, setEnding] = useState<Ending | null>(null)
+  const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
 
-    useEffect(() => {
-      const fetchEnding = async () => {
-        try {
-          const response = await EndingService.getEnding()
-          setEnding(response)
-        } catch (error) {
-          console.error('Error fetching ending:', error)
-        }
+  useEffect(() => {
+    const fetchEnding = async () => {
+      try {
+        const response = await EndingService.getEnding()
+        setEnding(response)
+      } catch (error) {
+        console.error('Error fetching ending:', error)
       }
-  
-      const fetchSolvedChallenges = async () => {
-        try {
-            const response = await ChallengeService.getSolvedChallenges()
-            const challengesArray = response.challenges
-            setSolvedChallenges(challengesArray)
-        } catch (error) {
-            console.error('Error fetching challenges:', error)
-          }
+    }
+
+    const fetchSolvedChallenges = async () => {
+      try {
+        const response = await ChallengeService.getSolvedChallenges()
+        const challengesArray = response.challenges
+        setSolvedChallenges(challengesArray)
+      } catch (error) {
+        console.error('Error fetching challenges:', error)
       }
+    }
 
-      fetchEnding()
-      fetchSolvedChallenges()
-    }, [])
-
+    fetchEnding()
+    fetchSolvedChallenges()
+  }, [])
 
   return (
     <Modal open={true} onClose={onClose}>
@@ -65,21 +64,20 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
         )}
 
         {solvedChallenges && (
-            <ul>
+          <ul>
             <p>you solved:</p>
             {solvedChallenges.map((challenge, index) => (
-            <li key={index}>
+              <li key={index}>
                 <Typography>{challenge.title}</Typography>
                 <Typography variant='body2'>{challenge.layer}</Typography>
                 <Typography variant='body2'>{challenge.region}</Typography>
-            </li>
+              </li>
             ))}
-        </ul>
+          </ul>
         )}
-
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default EndingModal;
+export default EndingModal
