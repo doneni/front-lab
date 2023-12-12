@@ -71,36 +71,36 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, layer, region 
           p: 4,
         }}
       >
-        <Button onClick={onClose}>Close Modal</Button>
-        <Typography>
+        {/* <Button sx={{marginLeft: '90%', minWidth: '10%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>X</Button> */}
+        {/* <Typography>
           <b>you are currently at</b>
           <p>layer: {layer}</p>
           <p>region: {region}</p>
-        </Typography>
+        </Typography> */}
 
         {errorMsg && (
-          <Typography variant='h4' sx={{ mt: 2 }}>
+          <Typography variant='body1' sx={{ mt: 2 }}>
             {errorMsg}
           </Typography>
         )}
 
         {challenge && (
           <>
-            <Typography variant='h4' sx={{ mt: 2 }}>
+            {/* <Typography variant='h4' sx={{ mt: 2 }}>
               Try Me!
-            </Typography>
-            <Typography>Title: {challenge.title}</Typography>
-            <Typography>Description: {challenge.description}</Typography>
-            <Typography>Connect: {challenge.connect}</Typography>
+            </Typography> */}
+            <Typography><h2>{challenge.title}<hr /></h2></Typography>
+            <Typography><b>Description</b><br></br>{challenge.description}</Typography>
+            <Typography><b>Connection</b><br></br>{challenge.connect}</Typography>
             <TextField
-              label='flag is...'
+              label='flag'
               variant='outlined'
               margin='normal'
               fullWidth
               value={userFlagValue}
               onChange={(e) => setUserFlagValue(e.target.value)}
             />
-            <Button onClick={handleSubmit} variant='contained' color='primary' sx={{ mt: 2 }}>
+            <Button onClick={handleSubmit} variant='contained' color='primary' sx={{ mt: 2, ml : '75%' }}>
               SUBMIT
             </Button>
           </>
