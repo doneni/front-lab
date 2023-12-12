@@ -52,28 +52,37 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
           p: 4,
         }}
       >
-        <Button onClick={onClose}>Close Modal</Button>
-        <Typography>
-          <h1>Ending</h1>
-        </Typography>
+        <Button sx={{marginLeft: '90%', minWidth: '10%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>X</Button>
 
         {ending && (
-          <Typography variant='h4' sx={{ mt: 2 }}>
-            {ending.title}
-          </Typography>
+            <Box>
+                <Typography sx={{ mt: 2 }}>
+                        <h2>{ending.title}</h2>
+                        <hr />
+                        <p>{ending.description}</p>
+                </Typography>
+
+                <img
+                src={ending.image}
+                alt='ending'
+                style={{ width: '100%', objectFit: 'cover' }}
+                />
+            </Box>
         )}
 
         {solvedChallenges && (
-          <ul>
-            <p>you solved:</p>
-            {solvedChallenges.map((challenge, index) => (
-              <li key={index}>
-                <Typography>{challenge.title}</Typography>
-                <Typography variant='body2'>{challenge.layer}</Typography>
-                <Typography variant='body2'>{challenge.region}</Typography>
-              </li>
-            ))}
-          </ul>
+          <Typography>
+            <hr />
+            <b>you solved:</b>
+            <ul>
+                {solvedChallenges.map((challenge, index) => (
+                <li key={index}>
+                    <b>{challenge.title}</b>
+                    <Typography variant='body2'>-{challenge.layer} {challenge.region}</Typography>
+                </li>
+                ))}
+            </ul>
+          </Typography>
         )}
       </Box>
     </Modal>
