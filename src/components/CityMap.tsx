@@ -49,7 +49,7 @@ export default function CityMap() {
       const containerWidth = container.offsetWidth
       const containerHeight = container.offsetHeight
       const image = new Image()
-      image.src = './map.gif'
+      image.src = './layer1.gif'
 
       image.onload = () => {
         if (containerWidth < image.width || containerHeight < image.height) {
