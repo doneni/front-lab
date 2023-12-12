@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { Button, Box,Typography } from '@mui/material';
 import EndingService from '../services/ending.service';
+import ChallengeService from '../services/challenge.service';
 import { Ending } from '../models/ending'
+import { Challenge } from '../models/challenge'
 
 interface EndingModalProps {
   onClose: () => void;
 }
 
 const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
-    const [ending, setEnding] = useState<Ending>()
+    const [ending, setEnding] = useState<Ending | null>(null)
+    const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
 
     useEffect(() => {
       const fetchEnding = async () => {
@@ -21,7 +24,18 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
         }
       }
   
+      const fetchSolvedChallenges = async () => {
+        try {
+            const response = await ChallengeService.getSolvedChallenges()
+            const challengesArray = response.challenges
+            setSolvedChallenges(challengesArray)
+        } catch (error) {
+            console.error('Error fetching challenges:', error)
+          }
+      }
+
       fetchEnding()
+      fetchSolvedChallenges()
     }, [])
 
 
@@ -48,6 +62,19 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
           <Typography variant='h4' sx={{ mt: 2 }}>
             {ending.title}
           </Typography>
+        )}
+
+        {solvedChallenges && (
+            <ul>
+            <p>you solved:</p>
+            {solvedChallenges.map((challenge, index) => (
+            <li key={index}>
+                <Typography>{challenge.title}</Typography>
+                <Typography variant='body2'>{challenge.layer}</Typography>
+                <Typography variant='body2'>{challenge.region}</Typography>
+            </li>
+            ))}
+        </ul>
         )}
 
       </Box>
