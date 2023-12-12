@@ -3,6 +3,7 @@ import { Button, Container, Grid } from '@mui/material'
 import { useSnackBar } from '../contexts/snackbar'
 import ChallengeModal from './ChallengeModal'
 import ChallengeListModal from './ChallengeListModal'
+import EndingModal from './EndingModal'
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
@@ -32,6 +33,7 @@ export default function CityMap() {
     ['23vh', '39vw'],
   ]
   const [isChallengeListModalOpen, setIsChallengeListModalOpen] = useState(false)
+  const [isEndingModalOpen, setIsEndingModalOpen] = useState(false)
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false)
   const [selectedLayer, setSelectedLayer] = useState('LAYER1')
   const [selectedRegion, setSelectedRegion] = useState('REGION1')
@@ -68,6 +70,14 @@ export default function CityMap() {
 
   const closeChallengeListModal = () => {
     setIsChallengeListModalOpen(false)
+  }
+
+  const openEndingModal = () => {
+    setIsEndingModalOpen(true)
+  }
+
+  const closeEndingModal = () => {
+    setIsEndingModalOpen(false)
   }
 
   const openChallengeModal = (layer: string, region: string) => {
@@ -109,7 +119,14 @@ export default function CityMap() {
         <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw')}>
           <img
             src='/smile.png'
-            alt='Logo'
+            alt='smile'
+            style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+          />
+        </Button>
+        <Button onClick={() => openEndingModal()} style={createButtonStyle('2vh', '72vw')}>
+          <img
+            src='/search.png'
+            alt='inspector'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
@@ -164,6 +181,8 @@ export default function CityMap() {
         )}
 
         {isChallengeListModalOpen && <ChallengeListModal onClose={closeChallengeListModal} />}
+
+        {isEndingModalOpen && <EndingModal onClose={closeEndingModal} />}
       </Container>
     </main>
   )
