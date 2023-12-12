@@ -39,7 +39,8 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
           p: 4,
         }}
       >
-        <Button onClick={onClose}>Close Modal</Button>
+
+        <Button sx={{marginLeft: '90%', minWidth: '10%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>X</Button>
 
         <Typography variant='h4' sx={{ mt: 2 }}>
           Challenge List
@@ -48,14 +49,13 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
         <ul>
           {challenges.map((challenge, index) => (
             <li key={index}>
-              <Typography>{challenge.title}</Typography>
-              <Typography variant='body2'>{challenge.layer}</Typography>
-              <Typography variant='body2'>{challenge.region}</Typography>
-              <Typography variant='body2'>{challenge.description}</Typography>
-              <Typography variant='body2'>{challenge.connect}</Typography>
+              <b>{challenge.title}</b>
+              <Typography variant='body2'>-{challenge.layer} {challenge.region}</Typography>
             </li>
           ))}
         </ul>
+
+        {/* <Button sx={{minWidth: '100%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>Close Modal</Button> */}
       </Box>
     </Modal>
   )

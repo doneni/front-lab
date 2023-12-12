@@ -3,6 +3,7 @@ import { Button, Container, Grid } from '@mui/material'
 import { useSnackBar } from '../contexts/snackbar'
 import ChallengeModal from './ChallengeModal'
 import ChallengeListModal from './ChallengeListModal'
+import EndingModal from './EndingModal'
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
@@ -32,9 +33,15 @@ export default function CityMap() {
     ['23vh', '39vw'],
   ]
   const [isChallengeListModalOpen, setIsChallengeListModalOpen] = useState(false)
+  const [isEndingModalOpen, setIsEndingModalOpen] = useState(false)
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false)
   const [selectedLayer, setSelectedLayer] = useState('LAYER1')
   const [selectedRegion, setSelectedRegion] = useState('REGION1')
+  const [backgroundImage, setBackgroundImage] = useState('LAYER1');
+
+  const changeBackgroundImage = (layer: string) => {
+    setBackgroundImage(layer);
+  };
 
   const handleResize = () => {
     const container = document.getElementById('mapContainer')
@@ -42,7 +49,7 @@ export default function CityMap() {
       const containerWidth = container.offsetWidth
       const containerHeight = container.offsetHeight
       const image = new Image()
-      image.src = './map.gif'
+      image.src = './layer1.gif'
 
       image.onload = () => {
         if (containerWidth < image.width || containerHeight < image.height) {
@@ -70,6 +77,14 @@ export default function CityMap() {
     setIsChallengeListModalOpen(false)
   }
 
+  const openEndingModal = () => {
+    setIsEndingModalOpen(true)
+  }
+
+  const closeEndingModal = () => {
+    setIsEndingModalOpen(false)
+  }
+
   const openChallengeModal = (layer: string, region: string) => {
     setSelectedLayer(layer)
     setSelectedRegion(region)
@@ -78,6 +93,11 @@ export default function CityMap() {
 
   const closeChallengeModal = () => {
     setIsChallengeModalOpen(false)
+  }
+
+  const onClickLayer = (layer: string) => {
+    changeBackgroundImage(layer)
+    setSelectedLayer(layer)
   }
 
   const createButtonStyle = (top: string, left: string) => ({
@@ -99,7 +119,7 @@ export default function CityMap() {
         id='mapContainer'
         sx={{
           mt: 2,
-          backgroundImage: 'url(./map.gif)',
+          backgroundImage: `url(./${backgroundImage}.gif)`,
           backgroundPosition: 'center',
           height: '85vh',
           position: 'relative',
@@ -109,7 +129,14 @@ export default function CityMap() {
         <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw')}>
           <img
             src='/smile.png'
-            alt='Logo'
+            alt='smile'
+            style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+          />
+        </Button>
+        <Button onClick={() => openEndingModal()} style={createButtonStyle('2vh', '72vw')}>
+          <img
+            src='/search.png'
+            alt='inspector'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
@@ -130,7 +157,7 @@ export default function CityMap() {
           {layers.map((layer) => (
             <Button
               key={layer}
-              onClick={() => setSelectedLayer(layer)}
+              onClick={() => onClickLayer(layer)}
               sx={{
                 borderRadius: 0,
                 backgroundColor: selectedLayer === layer ? 'grey' : 'white',
@@ -164,6 +191,8 @@ export default function CityMap() {
         )}
 
         {isChallengeListModalOpen && <ChallengeListModal onClose={closeChallengeListModal} />}
+
+        {isEndingModalOpen && <EndingModal onClose={closeEndingModal} />}
       </Container>
     </main>
   )
