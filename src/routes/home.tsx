@@ -51,7 +51,7 @@ export default function Home() {
               </Button>
             </Grid>
             <Grid item>
-              <Button
+              {/* <Button
                 component={NavLink}
                 to='/story'
                 sx={{
@@ -64,7 +64,7 @@ export default function Home() {
                 }}
               >
                 STORY
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </Box>

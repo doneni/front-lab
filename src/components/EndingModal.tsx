@@ -12,7 +12,8 @@ interface EndingModalProps {
 
 const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
   const [ending, setEnding] = useState<Ending | null>(null)
-  const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
+  const [solvedChallenges, setSolvedChallenges] = useState<Challenge[] | null>(null)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchEnding = async () => {
@@ -29,9 +30,14 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
         const response = await ChallengeService.getSolvedChallenges()
         const challengesArray = response.challenges
         setSolvedChallenges(challengesArray)
-      } catch (error) {
-        console.error('Error fetching challenges:', error)
-      }
+      } catch (error: any) {
+          if (error.response && error.response.status === 401) {
+            setErrorMsg('Login First')
+          } else {
+            console.error('Error fetching challenge:', error)
+            setErrorMsg(`Error fetching challenge: ${error.message}`)
+          }
+      } 
     }
 
     fetchEnding()
@@ -53,6 +59,12 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
         }}
       >
         <Button sx={{marginLeft: '90%', minWidth: '10%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>X</Button>
+
+        {errorMsg && (
+          <Typography variant='body1' sx={{ mt: 2 }}>
+            {errorMsg}
+          </Typography>
+        )}
 
         {ending && (
             <Box>
