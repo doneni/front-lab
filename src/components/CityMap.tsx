@@ -130,7 +130,7 @@ export default function CityMap() {
         <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw', '#4F100C')}>
           <img
             src='/map.png'
-            alt='list'
+            alt='map'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>

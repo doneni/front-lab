@@ -10,6 +10,8 @@ interface ChallengeListModalProps {
 
 const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
   const [challenges, setChallenges] = useState<Challenge[]>([])
+  const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchChallenges = async () => {
@@ -22,7 +24,23 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
       }
     }
 
+    const fetchSolvedChallenges = async () => {
+      try {
+        const response = await ChallengeService.getSolvedChallenges()
+        const challengesArray = response.challenges
+        setSolvedChallenges(challengesArray)
+      } catch (error: any) {
+          if (error.response && error.response.status === 401) {
+            setErrorMsg('Login first to check solved challenges')
+          } else {
+            console.error('Error fetching solved challenges:', error)
+            setErrorMsg(`Error fetching solved challenges: ${error.message}`)
+          }
+      } 
+    }
+
     fetchChallenges()
+    fetchSolvedChallenges()
   }, [])
 
   return (
@@ -47,13 +65,32 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
         </Typography>
 
         <ul>
-          {challenges.map((challenge, index) => (
-            <li key={index}>
-              <b>{challenge.title}</b>
-              <Typography variant='body2'>-{challenge.layer} {challenge.region}</Typography>
-            </li>
-          ))}
-        </ul>
+  {challenges.map((challenge, index) => {
+    const isSolved = solvedChallenges.some(solvedChallenge => solvedChallenge.title === challenge.title);
+    return (
+      <li key={index}>
+        {isSolved ? (
+          <Typography>
+            <b><s>{challenge.title}</s></b>
+            <p><s>-{challenge.layer} {challenge.region}</s></p>
+          </Typography>
+        ) : (
+          <>
+            <b>{challenge.title}</b>
+            <p>-{challenge.layer} {challenge.region}</p>
+          </>
+        )}
+      </li>
+    );
+  })}
+</ul>
+
+
+        {errorMsg && (
+          <Typography variant='body1' sx={{ mt: 2 }}>
+            <i>{errorMsg}</i>
+          </Typography>
+        )}
 
         {/* <Button sx={{minWidth: '100%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>Close Modal</Button> */}
       </Box>

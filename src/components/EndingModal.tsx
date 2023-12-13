@@ -89,7 +89,7 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
             <ul>
                 {solvedChallenges.map((challenge, index) => (
                 <li key={index}>
-                    <b>{challenge.title}</b>
+                    <b><i>{challenge.title}</i></b>
                     <Typography variant='body2'>-{challenge.layer} {challenge.region}</Typography>
                 </li>
                 ))}
