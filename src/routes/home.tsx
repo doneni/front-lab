@@ -29,7 +29,7 @@ export default function Home() {
           sx={{
             position: 'absolute',
             right: '10%',
-            top: '60%',
+            top: '85%',
             transform: 'translate(-50%, -50%)',
           }}
         >
@@ -53,7 +53,7 @@ export default function Home() {
             <Grid item>
               {/* <Button
                 component={NavLink}
-                to='/story'
+                to='/storyyg'
                 sx={{
                   color: '#5D1410',
                   fontSize: '20px',
