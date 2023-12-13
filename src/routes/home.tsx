@@ -18,18 +18,20 @@ export default function Home() {
           minHeight: '30vh',
           minWidth: '100vw',
           backgroundColor: '#5D1410',
+          justifyContent: 'center',
+          flexDirection: 'column',
         }}
       >
         <img
           src='/logo.png'
-          alt='Logo'
-          style={{ width: '50%', height: 'auto', objectFit: 'cover', marginLeft: '15vw' }}
+          alt='logo'
+          style={{ width: '50vw', height: 'auto', marginLeft: '15vw' }}
         />
         <Box
           sx={{
             position: 'absolute',
             right: '10%',
-            top: '60%',
+            top: '85%',
             transform: 'translate(-50%, -50%)',
           }}
         >
@@ -47,13 +49,13 @@ export default function Home() {
                   height: '100%',
                 }}
               >
-                CHALLENGE
+                <b>CHALLENGE</b>
               </Button>
             </Grid>
             <Grid item>
-              <Button
+              {/* <Button
                 component={NavLink}
-                to='/story'
+                to='/storyyg'
                 sx={{
                   color: '#5D1410',
                   fontSize: '20px',
@@ -64,7 +66,7 @@ export default function Home() {
                 }}
               >
                 STORY
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </Box>

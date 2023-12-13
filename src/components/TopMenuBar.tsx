@@ -41,7 +41,7 @@ export default function TopMenuBar() {
       <Toolbar>
         <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
           <Link component={NavLink} to='/' color='inherit' underline='none'>
-            <img src='/big_logo.png' alt='Logo' style={{ width: '300px', height: '50px' }} />
+            <img src='/hacktizen.png' alt='hacktizen' style={{ width: '300px', maxHeight: '50px', marginTop: '10px'}} />
           </Link>
         </Typography>
 
