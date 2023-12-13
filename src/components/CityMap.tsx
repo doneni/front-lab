@@ -127,24 +127,24 @@ export default function CityMap() {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw', 'black')}>
+        <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw', '#4F100C')}>
           <img
-            src='/list.png'
+            src='/map.png'
             alt='list'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
-        <Button onClick={() => setShowRegion(!showRegion)} style={createButtonStyle('12vh', '2vw', '#ffb9b5')}>
+        <Button onClick={() => setShowRegion(!showRegion)} style={createButtonStyle('12vh', '2vw', '#e3a8a8')}>
           <img
-            src='/visibility.png'
+            src={`./eye-${!showRegion}.png`}
             alt='visibility'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
-        <Button onClick={() => openEndingModal()} style={createButtonStyle('2vh', '72vw', 'black')}>
+        <Button onClick={() => openEndingModal()} style={createButtonStyle('2vh', '72vw', '#4F100C')}>
           <img
-            src='/search.png'
-            alt='inspector'
+            src='/magic-ball.png'
+            alt='magicball'
             style={{ width: '50px', height: '50px', objectFit: 'cover' }}
           />
         </Button>
@@ -174,7 +174,7 @@ export default function CityMap() {
                 width: '10vw',
               }}
             >
-              {layer}
+              <b>{layer}</b>
             </Button>
           ))}
         </Grid>
