@@ -211,7 +211,7 @@ export default function CityMap() {
                 justifyContent: 'center',
               }}
             >
-              {region}
+              <i>{region}</i>
             </Container>
             )}
           </Grid>
