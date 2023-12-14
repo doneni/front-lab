@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Button, Container, Grid, } from '@mui/material'
+import { Button, Container, Grid, Typography } from '@mui/material'
 import { useSnackBar } from '../contexts/snackbar'
 import ChallengeModal from './ChallengeModal'
 import ChallengeListModal from './ChallengeListModal'
 import EndingModal from './EndingModal'
+import ChallengeService from '../services/challenge.service'
+import { Challenge } from '../models/challenge'
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
@@ -39,6 +41,9 @@ export default function CityMap() {
   const [selectedRegion, setSelectedRegion] = useState('스마트 보안')
   const [backgroundImage, setBackgroundImage] = useState('서비스')
   const [showRegion, setShowRegion] = useState(false)
+  const [challenges, setChallenges] = useState<Challenge[]>([])
+  const [solvedChallenges, setSolvedChallenges] = useState<Challenge[]>([])
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   const changeBackgroundImage = (layer: string) => {
     setBackgroundImage(layer);
@@ -64,6 +69,34 @@ export default function CityMap() {
   }
 
   useEffect(() => {
+    const fetchChallenges = async () => {
+      try {
+        const response = await ChallengeService.getAllChallenges()
+        const challengesArray = response.challenges
+        setChallenges(challengesArray)
+      } catch (error) {
+        console.error('Error fetching challenges:', error)
+      }
+    }
+
+    const fetchSolvedChallenges = async () => {
+      try {
+        const response = await ChallengeService.getSolvedChallenges()
+        const challengesArray = response.challenges
+        setSolvedChallenges(challengesArray)
+      } catch (error: any) {
+          if (error.response && error.response.status === 401) {
+            setErrorMsg('Login first to check solved challenges')
+          } else {
+            console.error('Error fetching solved challenges:', error)
+            setErrorMsg(`Error fetching solved challenges: ${error.message}`)
+          }
+      } 
+    }
+
+    fetchChallenges()
+    fetchSolvedChallenges()
+
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
@@ -115,19 +148,31 @@ export default function CityMap() {
     backgroundColor,
   })
 
-  const createChallengeButtonStyle = (top: string, left: string, backgroundColor: string) => ({
-    position: 'absolute' as 'absolute',
-    backgroundSize: '100% 100%',
-    backgroundPosition: 'center',
-    width: '180px',
-    height: '130px',
-    overflow: 'hidden',
-    color: 'white',
-    opacity: 0.8,
-    top,
-    left,
-    backgroundColor,
-  })
+  const createChallengeButtonStyle = (top: string, left: string, region: string) => {
+    const isSolved = solvedChallenges.some(
+      (challenge) => challenge.layer === selectedLayer && challenge.region === region
+    );
+  
+    const hasChallenge = challenges.some(
+      (challenge) => challenge.layer === selectedLayer && challenge.region === region
+    );
+  
+    const backgroundColor = isSolved ? '#348050' : hasChallenge ? '#c96381' : '#bdbdbd';
+  
+    return {
+      position: 'absolute' as 'absolute',
+      backgroundSize: '100% 100%',
+      backgroundPosition: 'center',
+      width: '180px',
+      height: '130px',
+      overflow: 'hidden',
+      color: 'white',
+      opacity: 0.8,
+      top,
+      left,
+      backgroundColor,
+    };
+  };
 
   return (
     <main>
@@ -205,7 +250,7 @@ export default function CityMap() {
           <Grid item key={region}>
             <Button
               onClick={() => openChallengeModal(selectedLayer, region)}
-              style={createChallengeButtonStyle(location[index][0], location[index][1], '#c96381')}
+              style={createChallengeButtonStyle(location[index][0], location[index][1], region)}
             >
               <img
                 src={`region/${region}.png`}
@@ -250,6 +295,12 @@ export default function CityMap() {
         {isChallengeListModalOpen && <ChallengeListModal onClose={closeChallengeListModal} />}
 
         {isEndingModalOpen && <EndingModal onClose={closeEndingModal} />}
+      
+        {errorMsg && (
+          <Typography variant='body1' sx={{ mt: 2 }}>
+            <i>{errorMsg}</i>
+          </Typography>
+        )}
       </Container>
     </main>
   )
