@@ -125,6 +125,7 @@ export default function CityMap() {
           height: '85vh',
           position: 'relative',
           backgroundRepeat: 'no-repeat',
+          overflow: 'hidden',
         }}
       >
         <Button onClick={() => openChallengeListModal()} style={createButtonStyle('2vh', '2vw', '#4F100C')}>

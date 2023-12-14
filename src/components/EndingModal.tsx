@@ -75,7 +75,7 @@ const EndingModal: React.FC<EndingModalProps> = ({ onClose }) => {
                 </Typography>
 
                 <img
-                src={ending.image}
+                src={`./ending/${ending.image}`}
                 alt='ending'
                 style={{ width: '100%', objectFit: 'cover' }}
                 />
