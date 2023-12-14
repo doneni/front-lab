@@ -6,6 +6,7 @@ import ChallengeListModal from './ChallengeListModal'
 import EndingModal from './EndingModal'
 import ChallengeService from '../services/challenge.service'
 import { Challenge } from '../models/challenge'
+import { NavLink } from 'react-router-dom'
 
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
@@ -194,6 +195,29 @@ export default function CityMap() {
         <img
           src='/magic-ball.png'
           alt='magicball'
+          style={{ width: '90px', height: '90px', objectFit: 'cover' }}
+        />
+      </Button>
+      <Button
+        onClick={() => openEndingModal()}
+        component={NavLink}
+        to='/record'
+        sx={{
+            position: 'absolute' as 'absolute',
+            backgroundSize: '100% 100%',
+            backgroundPosition: 'stretch',
+            width: '80px',
+            height: '80px',
+            overflow: 'hidden',
+            color: 'white',
+            borderRadius: '10%',
+            top: '85.3vh',
+            left: '91vw',
+            boxShadow: '2px 2px 4px grey'
+      }}>
+        <img
+          src='/record.png'
+          alt='record'
           style={{ width: '90px', height: '90px', objectFit: 'cover' }}
         />
       </Button>
