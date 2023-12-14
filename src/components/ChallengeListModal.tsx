@@ -44,20 +44,23 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
   }, [])
 
   return (
-    <Modal open={true} onClose={onClose}>
+    <Modal
+      open={true}
+      onClose={onClose}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'auto',
+      }}>
       <Box
         sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
           width: 400,
           bgcolor: 'background.paper',
           boxShadow: 24,
           p: 4,
         }}
       >
-
         <Button sx={{marginLeft: '90%', minWidth: '10%', backgroundColor: 'black', color: 'white'}} onClick={onClose}>X</Button>
 
         <Typography variant='h4' sx={{ mt: 2 }}>
@@ -70,15 +73,15 @@ const ChallengeListModal: React.FC<ChallengeListModalProps> = ({ onClose }) => {
     return (
       <li key={index}>
         {isSolved ? (
-          <Typography>
+          <Typography sx={{lineHeight: 1.0}}>
             <b><s>{challenge.title}</s></b>
-            <p><s>-{challenge.layer} {challenge.region}</s></p>
+            <p><s>{challenge.layer} › {challenge.region}</s></p>
           </Typography>
         ) : (
-          <>
+          <Typography sx={{lineHeight: 1.0}}>
             <b>{challenge.title}</b>
-            <p>-{challenge.layer} {challenge.region}</p>
-          </>
+            <p>{challenge.layer} › {challenge.region}</p>
+          </Typography>
         )}
       </li>
     );
