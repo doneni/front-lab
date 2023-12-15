@@ -8,6 +8,7 @@ import Root from './routes/root'
 import Users, { loader as usersLoader } from './routes/users'
 import Challenge from './routes/challenge'
 import Story from './routes/story'
+import Records from './routes/record'
 
 export const routes = [
   {
@@ -40,6 +41,10 @@ export const routes = [
       {
         path: 'story',
         element: <Story />,
+      },
+      {
+        path: 'records',
+        element: <Records />,
       },
     ],
   },
