@@ -8,6 +8,10 @@ import ChallengeService from '../services/challenge.service'
 import { Challenge } from '../models/challenge'
 import { NavLink } from 'react-router-dom'
 
+export async function loader() {
+  return {}
+}
+
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
   const layers = ['서비스', '디바이스', '플랫폼SW', '인프라']
