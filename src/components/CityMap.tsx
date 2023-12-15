@@ -8,10 +8,6 @@ import ChallengeService from '../services/challenge.service'
 import { Challenge } from '../models/challenge'
 import { NavLink } from 'react-router-dom'
 
-export async function loader() {
-  return {}
-}
-
 export default function CityMap() {
   const { showSnackBar } = useSnackBar()
   const layers = ['서비스', '디바이스', '플랫폼SW', '인프라']
@@ -205,7 +201,7 @@ export default function CityMap() {
       <Button
         onClick={() => openEndingModal()}
         component={NavLink}
-        to='/record'
+        to='/records'
         sx={{
             position: 'absolute' as 'absolute',
             backgroundSize: '100% 100%',
@@ -220,8 +216,8 @@ export default function CityMap() {
             boxShadow: '2px 2px 4px grey'
       }}>
         <img
-          src='/record.png'
-          alt='record'
+          src='/star.png'
+          alt='records'
           style={{ width: '90px', height: '90px', objectFit: 'cover' }}
         />
       </Button>

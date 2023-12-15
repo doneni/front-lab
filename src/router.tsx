@@ -8,7 +8,7 @@ import Root from './routes/root'
 import Users, { loader as usersLoader } from './routes/users'
 import Challenge from './routes/challenge'
 import Story from './routes/story'
-import Record from './routes/record'
+import Records from './routes/record'
 
 export const routes = [
   {
@@ -43,8 +43,8 @@ export const routes = [
         element: <Story />,
       },
       {
-        path: 'record',
-        element: <Record />,
+        path: 'records',
+        element: <Records />,
       },
     ],
   },
