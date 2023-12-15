@@ -12,10 +12,13 @@ import {
 } from '@mui/material';
 import RecordService from '../services/record.service';
 import { Record } from '../models/record';
+import ChallengeService from '../services/challenge.service'
+import { Challenge } from '../models/challenge'
 
 export default function RecordForm() {
   const [records, setRecords] = useState<Record[]>([]);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [challenges, setChallenges] = useState<Challenge[]>([])
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -29,7 +32,18 @@ export default function RecordForm() {
       }
     };
 
-    fetchRecords();
+    const fetchChallenges = async () => {
+        try {
+          const response = await ChallengeService.getAllChallenges()
+          const challengesArray = response.challenges
+          setChallenges(challengesArray)
+        } catch (error) {
+          console.error('Error fetching challenges:', error)
+        }
+      }
+
+    fetchRecords()
+    fetchChallenges()
   }, []);
 
   return (
@@ -70,7 +84,13 @@ export default function RecordForm() {
               {records.map((record) => (
                 <TableRow key={record.index}>
                   <TableCell>{record.index}</TableCell>
-                  <TableCell>{record.nickname}</TableCell>
+                  {record.solved && record.solved.length === challenges.length ? (
+                    <>
+                    <TableCell>{record.nickname} 👑</TableCell>
+                    </>
+                  ) : (
+                    <TableCell>{record.nickname}</TableCell>
+                  )}
                   <TableCell>{record.content}</TableCell>
                   {record.solved && (
                       <TableCell>{record.solved.join(' / ')}</TableCell>
